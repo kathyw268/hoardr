@@ -7,6 +7,7 @@
       <th></th>
       <th>Condition</th>
       <th>Description</th>
+      
       <th></th>
       <th></th>
       <th></th>
@@ -20,6 +21,7 @@
         <td><%= image_tag item.photo.url(:thumb) %></td>
         <td><%= item.condition %></td>
         <td><%= item.description %></td>
+       
         <td><%= link_to 'Show', item %></td>
         <td><%= link_to 'Edit', edit_item_path(item) %></td>
         <td><%= link_to 'Destroy', item, method: :delete, data: { confirm: 'Are you sure?' } %></td>
