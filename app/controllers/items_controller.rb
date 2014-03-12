@@ -74,7 +74,7 @@ class ItemsController < ApplicationController
 
     def authorize_by_ownership
       unless @item.created_by_id == current_user.id
-        redirect_to index, notice: "This is not your item"
+        redirect_to root_path, alert: "This is not your item"
       end
     end
   
