@@ -7,7 +7,9 @@
     <% @items.each do |item| %>
       <div class="item-box">
         <h2><%= link_to item.name, item %></h2>
+        <% if item.photo? %>        
         <div><%= image_tag item.photo.url(:thumb) %></div>
+        <% end %>
         <p><%= item.condition %></p>
         <% if item.description.length > 250 %>
         <p><%= item.description.truncate(250) %><br/><%= link_to "Read More", item %></p>
