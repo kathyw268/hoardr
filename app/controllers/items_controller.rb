@@ -1,6 +1,7 @@
 class ItemsController < ApplicationController
   before_action :authenticate_user!, except: [:index]
   before_action :set_item, only: [:show, :edit, :update, :destroy]
+  before_action :authorize_by_ownership,  only: [:edit, :update, :destroy]
 
 
   # GET /items
@@ -27,6 +28,7 @@ class ItemsController < ApplicationController
   # POST /items.json
   def create
     @item = Item.new(item_params)
+    @item.created_by = current_user
 
     respond_to do |format|
       if @item.save
@@ -69,6 +71,13 @@ class ItemsController < ApplicationController
       @item = Item.find(params[:id])
     end
 
+
+    def authorize_by_ownership
+      unless @item.created_by_id == current_user.id
+        redirect_to index, notice: "This is not your item"
+      end
+    end
+  
     # Never trust parameters from the scary internet, only allow the white list through.
     def item_params
       params.require(:item).permit(:name, :condition, :description, :photo)
