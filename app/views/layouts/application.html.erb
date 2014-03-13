@@ -7,6 +7,9 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
+<div id="container">  
+  <h1><%= link_to "Hoardr", root_path %></h1>
+  
   <% if user_signed_in? %>
   <li>
     Hello,
@@ -23,8 +26,9 @@
     <%= link_to "Sign up", new_user_registration_path %>
   </li>
 <% end %>
-
+<p id="notice"><%= notice %></p>
+<p id="alert"><%= alert %></p>
 <%= yield %>
-
+  </div>
 </body>
 </html>

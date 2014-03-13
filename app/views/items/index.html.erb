@@ -1,39 +1,33 @@
-<h1>Listing items</h1>
+<p><%= link_to 'New Item', new_item_path, :id => "new", :class => "btn" %></p>
 
-<table>
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th></th>
-      <th>Condition</th>
-      <th>Description</th>
-      <th>By:</th>
-      <% if user_signed_in? %>
-      <th></th>
-      <th></th>
-      <th></th>
-      <% end %>
-    </tr>
-  </thead>
+<div id="item-container">
 
-  <tbody>
+
+ 
     <% @items.each do |item| %>
-      <tr>
-        <td><%= item.name %></td>
-        <td><%= image_tag item.photo.url(:thumb) %></td>
-        <td><%= item.condition %></td>
-        <td><%= item.description %></td>
-        <td><%= item.created_by.email %></td>
-      <% if user_signed_in? %>
-        <td><%= link_to 'Show', item %></td>
-        <td><%= link_to 'Edit', edit_item_path(item) %></td>
-        <td><%= link_to 'Destroy', item, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      <div class="item-box">
+        <h2><%= link_to item.name, item %></h2>
+        <% if item.photo? %>        
+        <div><%= image_tag item.photo.url(:thumb) %></div>
         <% end %>
-      </tr>
+        <p><span class="label">Condition:</span> <%= item.condition %></p>
+        <% if item.description.length > 250 %>
+        <p><%= item.description.truncate(250) %><br/><%= link_to "Read More", item %></p>
+        <% else %>
+        <p><%= item.description %></p>
+        <% end %>
+        <p><span class="label">User:</span> <%= item.created_by.email %></p>
+      <div class="edit">  
+      <% if current_user && (item.created_by_id == current_user.id) %>
+        <%= link_to 'Edit', edit_item_path(item), :class => "btn"   %>
+        <%= link_to 'Destroy', item, method: :delete, data: { confirm: 'Are you sure?' }, :class => "btn"  %>
+        <% end %>
+      </div> 
+    </div>  
     <% end %>
-  </tbody>
-</table>
+ 
+</div>
 
 <br>
 
-<%= link_to 'New Item', new_item_path %>
+

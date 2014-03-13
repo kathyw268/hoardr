@@ -1,10 +1,12 @@
-<p id="notice"><%= notice %></p>
+
 
 <p>
   <strong><%= @item.name %></strong>
 </p>
 <p>
+  <% if @item.photo? %> 
   <%= image_tag @item.photo.url %>
+  <% end %>
 </p>
 
 <p>
