@@ -1,4 +1,4 @@
-<h1>Listing items</h1> <%= link_to 'New Item', new_item_path, :class => "btn" %>
+<p><%= link_to 'New Item', new_item_path, :id => "new", :class => "btn" %></p>
 
 <div id="item-container">
 
@@ -10,13 +10,13 @@
         <% if item.photo? %>        
         <div><%= image_tag item.photo.url(:thumb) %></div>
         <% end %>
-        <p><%= item.condition %></p>
+        <p><span class="label">Condition:</span> <%= item.condition %></p>
         <% if item.description.length > 250 %>
         <p><%= item.description.truncate(250) %><br/><%= link_to "Read More", item %></p>
         <% else %>
         <p><%= item.description %></p>
         <% end %>
-        <p>Contact: <%= item.created_by.email %></p>
+        <p><span class="label">User:</span> <%= item.created_by.email %></p>
       <div class="edit">  
       <% if current_user && (item.created_by_id == current_user.id) %>
         <%= link_to 'Edit', edit_item_path(item), :class => "btn"   %>

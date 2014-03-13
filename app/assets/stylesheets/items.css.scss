@@ -2,23 +2,60 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 html, body {margin:0;padding:0;}
+$logo:#6E878E;
+$accent:#F89F9B;
+$main:#92B2A7;
 
 #container{
-  width:950px;
+  width:1000px;
   margin: 0 auto;
 }
 
-h1{display:inline-block;}
+h1{text-align:center; text-transform:uppercase;color:$logo;font-size:40px;}
+h2 a {
+  &:visited{
+  text-decoration:none;
+    color:$accent;}
+
+}
+
+a {
+  color: $logo;
+  text-decoration:none;
+  &:visited {
+    color: $logo;
+  }
+  &:hover {
+    color: $main;
+ 
+  }
+}
 
 #alert{
   color:#FFF;
   background:red;
   display:block;}
 
+#notice {
+  color:#FFF;
+  background:green;
+  display:block;
+}
+
 .item-box{
   width:300px;
   height:100%;
+  vertical-align: top;
+  border:1px solid #CCC;
+  padding:5px 10px;
+  margin-bottom: 5px;
   display:inline-block;
 }
 
-.btn {padding:5px; text-decoration:none; border-radius:5px; border:1px solid #000;}
+
+.label{font-weight:600;}
+
+li{list-style-type:none;}
+
+input[type="submit"], a.btn {background:$main; color:#FFF; text-decoration:none; border-radius:10px; padding:5px;}
+a:hover.btn{background-color: $accent;}
